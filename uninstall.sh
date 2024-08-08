@@ -1,5 +1,15 @@
 #!/bin/bash
 
+# Define log files with timestamp
+TIMESTAMP=$(date +"%Y%m%d_%H%M%S")
+LOG_FILE="/var/log/package_cleanup.log"
+WORKING_DIR="$(pwd)"
+RELATIVE_LOG_DIR="$WORKING_DIR/logs"
+RELATIVE_LOG_FILE="$RELATIVE_LOG_DIR/uninstall_${TIMESTAMP}.log"
+
+# Ensure the logs directory exists
+mkdir -p "$RELATIVE_LOG_DIR"
+
 # Define a whitelist of critical packages and essential tools
 whitelist=(
     # Core system utilities and libraries
@@ -74,6 +84,12 @@ whitelist=(
     # Printer and scanner support
     'cups' 'printer-driver-*'
 
+    # Firmware
+    'firmware-*'
+
+    # Libraries
+    'lib*'
+
     # Ubuntu/Kubuntu/Kali-specific tools
     'discover' 'gnome-software' 'kali-desktop-*' 'kali-linux-core' 'kali-linux-default'
     'kali-linux-headless' 'kubuntu-desktop' 'muon' 'ubuntu-desktop' 'ubuntu-drivers-common'
@@ -90,26 +106,31 @@ is_whitelisted() {
     return 1
 }
 
+# Start logging to both files
+echo "Starting package cleanup script at $(date)" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
+
 # Get a list of all installed packages
 INSTALLED_PACKAGES=$(dpkg-query -W --showformat='${Package}\n')
 
 # Loop through each installed package and check if it's part of the whitelist
 for package in $INSTALLED_PACKAGES; do
     if ! is_whitelisted "$package"; then
-        echo "Skipping essential package: $package"
+        echo "Skipping essential package: $package" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
     else
-        echo "Keeping whitelisted package: $package"
+        echo "Keeping whitelisted package: $package" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
     fi
 done
 
-# Cleanup and update
-sudo apt autoclean 
-sudo apt autoremove -y
-sudo apt update 
+# Perform the cleanup
+echo "Performing system cleanup at $(date)" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
+sudo apt autoclean | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
+sudo apt autoremove -y | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
+sudo apt update | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
 
 # Optionally remove all config files of removed packages
-#dpkg -l | grep '^rc' | awk '{print $2}' | sudo xargs dpkg --purge
+# echo "Removing configuration files of removed packages" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
+# dpkg -l | grep '^rc' | awk '{print $2}' | sudo xargs dpkg --purge | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
 
-echo "The script has been successfully executed"
-echo "No essential packages were removed"
-echo "Thanks for using this script"
+echo "The script has been successfully executed" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
+echo "No essential packages were removed" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
+echo "Thanks for using this script" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
