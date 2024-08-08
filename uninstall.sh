@@ -90,6 +90,9 @@ whitelist=(
     # Libraries
     'lib*'
 
+    # Terminals - explicitly ensure common terminals are not removed
+    'gnome-terminal' 'xfce4-terminal' 'konsole' 'xterm' 'terminator'
+
     # Ubuntu/Kubuntu/Kali-specific tools
     'discover' 'gnome-software' 'kali-desktop-*' 'kali-linux-core' 'kali-linux-default'
     'kali-linux-headless' 'kubuntu-desktop' 'muon' 'ubuntu-desktop' 'ubuntu-drivers-common'
