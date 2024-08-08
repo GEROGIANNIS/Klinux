@@ -3,66 +3,80 @@
 # Define a whitelist of critical packages and essential tools
 whitelist=(
     # Core system utilities and libraries
-    'bash' 'coreutils' 'apt' 'dpkg' 'systemd' 'init' 'util-linux' 'gnupg'
-    'mount' 'e2fsprogs' 'btrfs-progs' 'xfsprogs' 'ntfs-3g' 'dosfstools'
-    'iproute2' 'net-tools' 'openssh-client' 'curl' 'wget' 'dnsutils' 'iptables'
-    'ufw' 'gnupg2' 'software-properties-common' 'apt-transport-https'
-    
-    # Networking
-    'network-manager' 'openssh-server' 'dnsutils' 'bind9-host' 'net-tools'
+    'apt' 'apt-transport-https' 'bash' 'btrfs-progs' 'coreutils' 'curl' 'dnsutils'
+    'dpkg' 'dosfstools' 'e2fsprogs' 'gnupg' 'gnupg2' 'iptables' 'iproute2'
+    'mount' 'net-tools' 'ntfs-3g' 'openssh-client' 'software-properties-common'
+    'systemd' 'ufw' 'util-linux' 'wget'
+
+    # Networking - include both client and server components
+    'avahi-daemon' 'bind9-host' 'dnsutils' 'network-manager' 'network-manager-gnome'
+    'openssh-client' 'openssh-server' 'wpasupplicant' 'wireless-tools'
+
+    # Bluetooth
+    'blueman' 'bluez' 'bluez-tools' 'bluetooth' 'pulseaudio-module-bluetooth'
 
     # Package management
-    'apt' 'dpkg' 'snapd' 'flatpak' 'rpm' 'dnf' 'pacman'
+    'apt' 'dnf' 'dpkg' 'flatpak' 'pacman' 'rpm' 'snapd'
 
-    # Desktop environment components
-    'xorg' 'wayland'
-    'gnome-shell' 'gnome-session' 'gnome-control-center' 'gnome-settings-daemon' 'gnome-terminal'
-    'kde-plasma-desktop' 'plasma-desktop' 'plasma-workspace' 'konsole'
-    'xfce4' 'xfce4-terminal'
-    'cinnamon-desktop-environment' 'cinnamon'
-    'mate-desktop-environment' 'mate-terminal'
-    'lxde' 'lxqt' 'lxterminal'
+    # Desktop environment components - GNOME, XFCE, and KDE
+    'wayland' 'xorg'
+
+    # GNOME components
+    'eog' 'evince' 'gdm3' 'gnome-backgrounds' 'gnome-control-center'
+    'gnome-disk-utility' 'gnome-icon-theme' 'gnome-keyring' 'gnome-session'
+    'gnome-settings-daemon' 'gnome-shell' 'gnome-shell-extensions' 'gnome-software'
+    'gnome-screensaver' 'gnome-system-monitor' 'gnome-terminal' 'gnome-tweaks'
+    'gucharmap' 'mutter' 'nautilus'
+
+    # XFCE components
+    'lightdm' 'lightdm-gtk-greeter' 'mousepad' 'ristretto' 'thunar' 'xfce4'
+    'xfce4-appfinder' 'xfce4-goodies' 'xfce4-notifyd' 'xfce4-panel' 'xfce4-power-manager'
+    'xfce4-session' 'xfce4-settings' 'xfce4-taskmanager' 'xfce4-terminal' 'xfdesktop4'
+    'xfwm4'
+
+    # KDE components
+    'breeze' 'discover' 'dolphin' 'gwenview' 'kate' 'kde-full' 'kde-plasma-desktop'
+    'kde-standard' 'kdeconnect' 'kinfocenter' 'khotkeys' 'konsole' 'krunner'
+    'kscreen' 'ksysguard' 'kwin' 'okular' 'plasma-desktop' 'plasma-nm' 'plasma-pa'
+    'plasma-workspace' 'sddm' 'systemsettings' 'yakuake'
 
     # Display managers
     'gdm3' 'lightdm' 'sddm' 'xdm'
 
     # Audio
-    'pulseaudio' 'alsa-utils' 'pavucontrol'
+    'alsa-utils' 'pulseaudio' 'pulseaudio-module-bluetooth' 'pavucontrol'
 
     # Development tools
-    'gcc' 'g++' 'make' 'cmake' 'build-essential'
-    'git'
-    'python3' 'perl' 'ruby' 'nodejs'
+    'build-essential' 'cmake' 'g++' 'gcc' 'git' 'make' 'nodejs' 'perl' 'python3' 'ruby'
 
     # Text editors and file management
-    'nano' 'vim' 'gedit' 'kate' 'mousepad'
-    'nautilus' 'dolphin' 'thunar' 'pcmanfm' 'nemo' 'caja'
+    'caja' 'dolphin' 'gedit' 'kate' 'mousepad' 'nano' 'nautilus' 'nemo' 'pcmanfm'
+    'thunar' 'vim'
 
     # Bootloader and related utilities
-    'grub2' 'grub-pc' 'grub-efi'
+    'grub-efi' 'grub-pc' 'grub2'
 
     # Compression tools
-    'gzip' 'bzip2' 'xz-utils' 'zip' 'unzip'
+    'bzip2' 'gzip' 'unzip' 'xz-utils' 'zip'
 
     # Disk management
-    'parted' 'gparted' 'lvm2' 'smartmontools'
+    'gparted' 'lvm2' 'parted' 'smartmontools'
 
     # System monitoring
-    'htop' 'sysstat' 'lsof' 'iotop'
+    'htop' 'iotop' 'lsof' 'sysstat'
 
     # Security tools
-    'ufw' 'firewalld' 'sudo' 'polkit' 'libpam*'
+    'firewalld' 'libpam*' 'polkit' 'sudo' 'ufw'
 
     # Multimedia
-    'vlc' 'mpv' 'gimp' 'eog' 'gwenview'
+    'eog' 'gimp' 'gwenview' 'mpv' 'vlc'
 
     # Printer and scanner support
     'cups' 'printer-driver-*'
 
     # Ubuntu/Kubuntu/Kali-specific tools
-    'kubuntu-desktop' 'muon' 'discover'
-    'ubuntu-desktop' 'gnome-software' 'ubuntu-drivers-common'
-    'kali-linux-default' 'kali-desktop-*'
+    'discover' 'gnome-software' 'kali-desktop-*' 'kali-linux-core' 'kali-linux-default'
+    'kali-linux-headless' 'kubuntu-desktop' 'muon' 'ubuntu-desktop' 'ubuntu-drivers-common'
 )
 
 # Function to check if a package is in the whitelist
@@ -82,8 +96,9 @@ INSTALLED_PACKAGES=$(dpkg-query -W --showformat='${Package}\n')
 # Loop through each installed package and check if it's part of the whitelist
 for package in $INSTALLED_PACKAGES; do
     if ! is_whitelisted "$package"; then
-        echo "Removing $package..."
-        sudo apt remove "$package" -y
+        echo "Skipping essential package: $package"
+    else
+        echo "Keeping whitelisted package: $package"
     fi
 done
 
@@ -96,5 +111,5 @@ sudo apt update
 #dpkg -l | grep '^rc' | awk '{print $2}' | sudo xargs dpkg --purge
 
 echo "The script has been successfully executed"
-echo "Non-essential tools and applications have been removed/uninstalled"
+echo "No essential packages were removed"
 echo "Thanks for using this script"
