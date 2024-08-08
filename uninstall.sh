@@ -115,14 +115,26 @@ echo "Starting package cleanup script at $(date)" | tee -a "$LOG_FILE" "$RELATIV
 # Get a list of all installed packages
 INSTALLED_PACKAGES=$(dpkg-query -W --showformat='${Package}\n')
 
+# Variable to store the list of installed packages from the whitelist
+packages_to_remove=""
+
 # Loop through each installed package and check if it's part of the whitelist
 for package in $INSTALLED_PACKAGES; do
-    if ! is_whitelisted "$package"; then
-        echo "Skipping essential package: $package" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
+    if is_whitelisted "$package"; then
+        echo "Identified whitelisted package to remove: $package" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
+        packages_to_remove+="$package "
     else
-        echo "Keeping whitelisted package: $package" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
+        echo "Keeping non-whitelisted package: $package" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
     fi
 done
+
+# Check if there are any packages to remove
+if [ -n "$packages_to_remove" ]; then
+    echo "Packages to remove: $packages_to_remove" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
+    sudo apt remove $packages_to_remove -y | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
+else
+    echo "No whitelisted packages to remove" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
+fi
 
 # Perform the cleanup
 echo "Performing system cleanup at $(date)" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
@@ -135,5 +147,4 @@ sudo apt update | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
 # dpkg -l | grep '^rc' | awk '{print $2}' | sudo xargs dpkg --purge | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
 
 echo "The script has been successfully executed" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
-echo "No essential packages were removed" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
 echo "Thanks for using this script" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
