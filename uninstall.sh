@@ -29,14 +29,14 @@ whitelist=(
     'apt' 'dnf' 'dpkg' 'flatpak' 'pacman' 'rpm' 'snapd'
 
     # Desktop environment components - GNOME, XFCE, and KDE
-    'wayland' 'xorg' 'xserver-xorg' 'x11-common' 'xserver*'
+    'wayland' 'xorg*' 'x11*' 'xserver*'
 
     # GNOME components
     'eog' 'evince' 'gdm3' 'gnome-backgrounds' 'gnome-control-center'
     'gnome-disk-utility' 'gnome-icon-theme' 'gnome-keyring' 'gnome-session'
     'gnome-settings-daemon' 'gnome-shell' 'gnome-shell-extensions' 'gnome-software'
     'gnome-screensaver' 'gnome-system-monitor' 'gnome-terminal' 'gnome-tweaks'
-    'gucharmap' 'mutter' 'nautilus'
+    'gucharmap' 'mutter' 'nautilus' 'gnome*'
 
     # XFCE components
     'lightdm' 'lightdm-gtk-greeter' 'mousepad' 'ristretto' 'thunar' 'xfce4'
@@ -68,7 +68,7 @@ whitelist=(
     'grub-efi' 'grub-pc' 'grub2'
 
     # Compression tools
-    'bzip2' 'gzip' 'unzip' 'xz-utils' 'zip'
+    'bzip2' 'gzip' 'unzip' 'xz-utils' 'zip' '7zip'
 
     # Disk management
     'gparted' 'lvm2' 'cryptsetup' 'mdadm' 'parted' 'smartmontools'
@@ -92,10 +92,10 @@ whitelist=(
     'lib*'
 
     # Terminals - explicitly ensure common terminals are not removed
-    'gnome-terminal' 'xfce4-terminal' 'konsole' 'xterm' 'terminator'
+    'gnome-terminal' 'xfce4-terminal' 'konsole' 'xterm' 'terminator' 'tmux'
 
     # Ubuntu/Kubuntu/Kali-specific tools
-    'discover' 'gnome-software' 'kali-desktop-*' 'kali-linux-core' 'kali-linux-default'
+    'discover' 'gnome-software' 'kali-desktop-*' 'kali-linux-core' 'kali-linux-default' 'kali*'
     'kali-linux-headless' 'kubuntu-desktop' 'muon' 'ubuntu-desktop' 'ubuntu-drivers-common'
 
     # Man pages and documentation
@@ -111,7 +111,7 @@ whitelist=(
     'hostname' 'date' 'uptime' 'df' 'du' 'top' 'htop' 'ps' 'kill' 'killall'
     'wget' 'curl' 'ping' 'traceroute' 'netstat' 'ss' 'ifconfig' 'ip' 'ls' 'cp'
     'mv' 'rm' 'pwd' 'ln' 'chmod' 'chown' 'chgrp' 'touch' 'mkdir' 'rmdir' 'sh'
-    'bash' 'zsh'
+    'bash' 'zsh' 'accountsservice' 'attr' 'ca-cert*' 'java*' 'dbus*' 'cron*'
 )
 
 # Function to check if a package is in the whitelist
