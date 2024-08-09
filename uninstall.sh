@@ -111,7 +111,7 @@ whitelist=(
     'hostname' 'date' 'uptime' 'df' 'du' 'top' 'htop' 'ps' 'kill' 'killall'
     'wget' 'curl' 'ping' 'traceroute' 'netstat' 'ss' 'ifconfig' 'ip' 'ls' 'cp'
     'mv' 'rm' 'pwd' 'ln' 'chmod' 'chown' 'chgrp' 'touch' 'mkdir' 'rmdir' 'sh'
-    'bash' 'zsh' 'accountsservice' 'attr' 'ca-cert*' 'java*' 'dbus*' 'cron*' 'openjdk*'
+    'bash' 'zsh' 'accountsservice' 'attr' 'ca-cert*' 'java*' 'dbus*' 'cron*' 'openjdk*' 'binutils' 'console-common'
 )
 
 # Function to check if a package is in the whitelist
