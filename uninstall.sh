@@ -125,6 +125,15 @@ is_whitelisted() {
     return 1
 }
 
+# Function to check if a package is essential for the system
+is_essential() {
+    local pkg=$1
+    if dpkg -s "$pkg" 2>/dev/null | grep -q 'Essential: yes'; then
+        return 0
+    fi
+    return 1
+}
+
 # Start logging to both files
 echo "Starting package cleanup script at $(date)" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
 
@@ -136,11 +145,15 @@ packages_to_remove=""
 
 # Loop through each installed package and check if it's NOT part of the whitelist
 for package in $INSTALLED_PACKAGES; do
-    if ! is_whitelisted "$package"; then
-        echo "Identified non-whitelisted package to remove: $package" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
-        packages_to_remove+="$package "
-    else
+    if is_whitelisted "$package"; then
         echo "Keeping whitelisted package: $package" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
+    else
+        if is_essential "$package"; then
+            echo "Keeping essential package: $package" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
+        else
+            echo "Identified non-whitelisted and non-essential package to remove: $package" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
+            packages_to_remove+="$package "
+        fi
     fi
 done
 
