@@ -115,17 +115,17 @@ echo "Starting package cleanup script at $(date)" | tee -a "$LOG_FILE" "$RELATIV
 # Get a list of all installed packages
 INSTALLED_PACKAGES=$(dpkg-query -W --showformat='${Package}\n')
 
-# Variable to store the list of installed packages from the whitelist
+# Variable to store the list of installed packages to remove
 packages_to_remove=""
 
-# Loop through each installed package and check if it's part of the whitelist
+# Loop through each installed package and check if it's NOT part of the whitelist
 for package in $INSTALLED_PACKAGES; do
-    if is_whitelisted "$package"; then
-        echo "Identified whitelisted package to remove: $package" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
+    if ! is_whitelisted "$package"; then
+        echo "Identified non-whitelisted package to remove: $package" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
         packages_to_remove+="$package "
     else
-        echo "Keeping non-whitelisted package: $package" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
-    fi
+        echo "Keeping whitelisted package: $package" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
+    end
 done
 
 # Check if there are any packages to remove
@@ -133,7 +133,7 @@ if [ -n "$packages_to_remove" ]; then
     echo "Packages to remove: $packages_to_remove" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
     sudo apt remove $packages_to_remove -y | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
 else
-    echo "No whitelisted packages to remove" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
+    echo "No non-whitelisted packages to remove" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
 fi
 
 # Perform the cleanup
