@@ -19,7 +19,7 @@ whitelist=(
     'systemd' 'ufw' 'util-linux' 'wget'
 
     # Networking - include both client and server components
-    'avahi-daemon' 'bind9-host' 'dnsutils' 'network-manager' 'network-manager-gnome'
+    'avahi-daemon' 'bind9-host' 'dnsutils' 'network-manager*'
     'openssh-client' 'openssh-server' 'wpasupplicant' 'wireless-tools'
 
     # Bluetooth
@@ -111,7 +111,7 @@ whitelist=(
     'hostname' 'date' 'uptime' 'df' 'du' 'top' 'htop' 'ps' 'kill' 'killall'
     'wget' 'curl' 'ping' 'traceroute' 'netstat' 'ss' 'ifconfig' 'ip' 'ls' 'cp'
     'mv' 'rm' 'pwd' 'ln' 'chmod' 'chown' 'chgrp' 'touch' 'mkdir' 'rmdir' 'sh'
-    'bash' 'zsh' 'accountsservice' 'attr' 'ca-cert*' 'java*' 'dbus*' 'cron*'
+    'bash' 'zsh' 'accountsservice' 'attr' 'ca-cert*' 'java*' 'dbus*' 'cron*' 'openjdk*'
 )
 
 # Function to check if a package is in the whitelist
