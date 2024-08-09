@@ -29,7 +29,7 @@ whitelist=(
     'apt' 'dnf' 'dpkg' 'flatpak' 'pacman' 'rpm' 'snapd'
 
     # Desktop environment components - GNOME, XFCE, and KDE
-    'wayland' 'xorg' 'xserver-xorg' 'x11-common'
+    'wayland' 'xorg' 'xserver-xorg' 'x11-common' 'xserver*'
 
     # GNOME components
     'eog' 'evince' 'gdm3' 'gnome-backgrounds' 'gnome-control-center'
@@ -103,6 +103,15 @@ whitelist=(
 
     # Zsh and related
     'zsh*'
+
+    # Basic Linux commands and utilities
+    'coreutils' 'findutils' 'file' 'sed' 'grep' 'awk' 'cut' 'sort' 'tar' 'gzip'
+    'bzip2' 'xz-utils' 'unzip' 'rsync' 'sudo' 'passwd' 'adduser' 'useradd'
+    'groupadd' 'usermod' 'deluser' 'accountservice' 'mount' 'umount' 'lsb-release'
+    'hostname' 'date' 'uptime' 'df' 'du' 'top' 'htop' 'ps' 'kill' 'killall'
+    'wget' 'curl' 'ping' 'traceroute' 'netstat' 'ss' 'ifconfig' 'ip' 'ls' 'cp'
+    'mv' 'rm' 'pwd' 'ln' 'chmod' 'chown' 'chgrp' 'touch' 'mkdir' 'rmdir' 'sh'
+    'bash' 'zsh'
 )
 
 # Function to check if a package is in the whitelist
