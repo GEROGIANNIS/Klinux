@@ -125,7 +125,7 @@ for package in $INSTALLED_PACKAGES; do
         packages_to_remove+="$package "
     else
         echo "Keeping whitelisted package: $package" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
-    end
+    fi
 done
 
 # Check if there are any packages to remove
