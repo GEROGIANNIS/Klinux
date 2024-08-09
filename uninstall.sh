@@ -29,7 +29,7 @@ whitelist=(
     'apt' 'dnf' 'dpkg' 'flatpak' 'pacman' 'rpm' 'snapd'
 
     # Desktop environment components - GNOME, XFCE, and KDE
-    'wayland' 'xorg'
+    'wayland' 'xorg' 'xserver-xorg' 'x11-common'
 
     # GNOME components
     'eog' 'evince' 'gdm3' 'gnome-backgrounds' 'gnome-control-center'
@@ -58,6 +58,7 @@ whitelist=(
 
     # Development tools
     'build-essential' 'cmake' 'g++' 'gcc' 'git' 'make' 'nodejs' 'perl' 'python3' 'ruby'
+    'clang' 'llvm' 'python-dev' 'php' 'automake' 'pkg-config' 'gdb'
 
     # Text editors and file management
     'caja' 'dolphin' 'gedit' 'kate' 'mousepad' 'nano' 'nautilus' 'nemo' 'pcmanfm'
@@ -70,7 +71,7 @@ whitelist=(
     'bzip2' 'gzip' 'unzip' 'xz-utils' 'zip'
 
     # Disk management
-    'gparted' 'lvm2' 'parted' 'smartmontools'
+    'gparted' 'lvm2' 'cryptsetup' 'mdadm' 'parted' 'smartmontools'
 
     # System monitoring
     'htop' 'iotop' 'lsof' 'sysstat'
@@ -82,7 +83,7 @@ whitelist=(
     'eog' 'gimp' 'gwenview' 'mpv' 'vlc'
 
     # Printer and scanner support
-    'cups' 'printer-driver-*'
+    'cups' 'system-config-printer' 'sane-utils' 'printer-driver-*'
 
     # Firmware
     'firmware-*'
@@ -96,6 +97,12 @@ whitelist=(
     # Ubuntu/Kubuntu/Kali-specific tools
     'discover' 'gnome-software' 'kali-desktop-*' 'kali-linux-core' 'kali-linux-default'
     'kali-linux-headless' 'kubuntu-desktop' 'muon' 'ubuntu-desktop' 'ubuntu-drivers-common'
+
+    # Man pages and documentation
+    'man-db' 'manpages' 'locales' 'dictionaries-common' 'hunspell-*'
+
+    # Zsh and related
+    'zsh*'
 )
 
 # Function to check if a package is in the whitelist
