@@ -39,7 +39,7 @@ whitelist=(
     'gucharmap' 'mutter' 'nautilus' 'gnome*'
 
     # XFCE components
-    'lightdm' 'lightdm-gtk-greeter' 'mousepad' 'ristretto' 'thunar' 'xfce4'
+    'lightdm' 'lightdm-gtk-greeter' 'mousepad' 'ristretto' 'thunar' 'xfce*'
     'xfce4-appfinder' 'xfce4-goodies' 'xfce4-notifyd' 'xfce4-panel' 'xfce4-power-manager'
     'xfce4-session' 'xfce4-settings' 'xfce4-taskmanager' 'xfce4-terminal' 'xfdesktop4'
     'xfwm4'
