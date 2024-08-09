@@ -160,7 +160,16 @@ done
 # Check if there are any packages to remove
 if [ -n "$packages_to_remove" ]; then
     echo "Packages to remove: $packages_to_remove" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
-    sudo apt remove $packages_to_remove -y | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
+
+    # Loop through each package to remove
+    for package in $packages_to_remove; do
+        echo "Attempting to remove package: $package" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
+        if sudo apt remove "$package" -y >> "$LOG_FILE" 2>&1; then
+            echo "Removed $package successfully ✔" | tee -a "$RELATIVE_LOG_FILE"
+        else
+            echo "Failed to remove $package" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
+        fi
+    done
 else
     echo "No non-whitelisted packages to remove" | tee -a "$LOG_FILE" "$RELATIVE_LOG_FILE"
 fi
