@@ -11,9 +11,12 @@ RELATIVE_LOG_FILE="$RELATIVE_LOG_DIR/uninstall_${TIMESTAMP}.log"
 mkdir -p "$RELATIVE_LOG_DIR"
 
 # Load the whitelist from the external file
-WHITELIST_FILE="/path/to/whitelist.txt"
+WHITELIST_FILE="$(pwd)/whitelist.txt"
 whitelist=()
+
 while IFS= read -r line; do
+    # Remove leading/trailing whitespace
+    line=$(echo "$line" | xargs)
     # Skip comments and empty lines
     [[ $line =~ ^#.*$ || -z $line ]] && continue
     whitelist+=("$line")
@@ -23,7 +26,8 @@ done < "$WHITELIST_FILE"
 is_whitelisted() {
     local pkg=$1
     for core_pkg in "${whitelist[@]}"; do
-        if [[ $pkg == $core_pkg || $pkg == ${core_pkg%%\*}* ]]; then
+        # Handle wildcards
+        if [[ $pkg == $core_pkg || $core_pkg == * && $pkg == ${core_pkg%%\*}* ]]; then
             return 0
         fi
     done
