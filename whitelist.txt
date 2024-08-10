@@ -315,3 +315,13 @@ cron*
 openjdk*
 binutils
 console-common
+at-spi2-core
+gtk*
+gir*
+gvfs*
+colord*
+hicolor*
+*lib*
+adwaita-icon-theme
+font*
+
