@@ -345,3 +345,7 @@ icu*
 *driver*
 *avahi*
 *distro*
+*gpg*
+*graphical*
+*network*
+*command*
