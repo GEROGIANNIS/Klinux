@@ -350,3 +350,10 @@ icu*
 *network*
 *command*
 *keyboard*
+*desktop*
+*lua*
+*ruby*
+*qt*
+*sound*
+*audio*
+*screen*
