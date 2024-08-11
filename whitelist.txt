@@ -344,3 +344,4 @@ icu*
 *dhcp*
 *driver*
 *avahi*
+*distro*
