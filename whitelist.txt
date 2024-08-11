@@ -343,3 +343,4 @@ icu*
 *x11*
 *dhcp*
 *driver*
+*avahi*
