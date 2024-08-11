@@ -316,6 +316,9 @@ openjdk*
 binutils
 console-common
 at-spi2-core
+at-spi2-common
+*common*
+*core*
 gtk*
 gir*
 gvfs*
