@@ -365,3 +365,8 @@ icu*
 *debconf*
 *debian*
 debian-archive-keyring
+*init*
+*plymouth*
+*policy*
+*pipewire*
+*gnome*
