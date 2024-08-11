@@ -358,3 +358,10 @@ icu*
 *audio*
 *screen*
 *ssl*
+*settings*
+*dconf*
+*dmsetup*
+*engrampa*
+*debconf*
+*debian*
+debian-archive-keyring
