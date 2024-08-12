@@ -391,3 +391,17 @@ debian-archive-keyring
 *hdparm*
 *bin*
 *console*
+*mobile-broadband-provider-info*
+*netmask*
+*media-types*
+*blt*
+*bundler*
+*cgpt*
+*dmidecode*
+*kbd*
+*laptop-detect*
+*nasm*
+*nftables*
+*p11*
+*enchant-2*
+*fuse3*
